@@ -13,3 +13,14 @@
 # Take one down, pass it around, 1 bottle of beer on the wall!
 # 1 bottle of beer on the wall, 1 bottle of beer!
 # Take one down, pass it around, no more bottles of beer on the wall!
+
+bottles_left = 99
+while bottles_left > 0
+  puts "#{bottles_left} bottles of beer on the wall, #{bottles_left} bottles of beer!"
+  bottles_left = bottles_left - 1
+  if bottles_left == 0
+    break
+  end
+  puts "Take one down, pass it around, #{bottles_left} bottles of beer on the wall!"
+end
+puts "Take one down, pass it around, no more bottles of beer on the wall!"

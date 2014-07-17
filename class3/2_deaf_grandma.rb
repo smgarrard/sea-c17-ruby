@@ -26,3 +26,17 @@
 # Hint 3: People often ask me, “How can I make rand give me a number in a range
 # not starting at zero?” But you don’t need it to. Is there something you could
 # do to the number rand returns to you?
+
+puts "Oh, hi honey!! I'm just sooo glad you called!"
+response = gets.chomp
+
+while response != "BYE"
+  if response == response.upcase
+    puts "NO, NOT SINCE " + (rand(21) + 1930).to_s
+  else
+    puts "HUH?! SPEAK UP, SONNY!"
+  end
+response = gets.chomp
+end
+
+puts "O.K. call me again soon why don't you??"
