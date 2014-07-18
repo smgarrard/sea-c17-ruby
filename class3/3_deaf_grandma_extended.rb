@@ -11,13 +11,15 @@ puts "Oh, hi honey!! I'm just sooo glad you called!"
 
 while bye < 3
   response = gets.chomp
+
   if response == "BYE"
-    bye = bye + 1
+    bye += 1
     puts "Sorry Sonny, I just can't hear you very well.  How is school going?"
   else
     bye = 0
+
     if response == response.upcase
-      puts "NO, NOT SINCE " + (rand(21) + 1930).to_s
+      puts "NO, NOT SINCE #{rand(21) + 1930}!"
     else
       puts "HUH?! SPEAK UP, SONNY!"
     end
