@@ -24,36 +24,37 @@
 
 def modern_roman_numeral(num)
 
-  (num / 1000).times { print "M" }
-  num_left = num % 1000
+  arabics_to_romans = [
+    [1000, "M"],
+    [900, "CM"],
+    [500, "D"],
+    [400, "CD"],
+    [100, "C"],
+    [90, "XC"],
+    [50, "L"],
+    [40, "XL"],
+    [10, "X"],
+    [9, "IX"],
+    [5, "V"],
+    [4, "IV"],
+    [1, "I"],
+  ]
 
-  (num_left / 900).times { print "CM" }
-  num_left = num_left % 900
+  answer = []
 
-  (num_left / 500).times { print "D" }
-  num_left = num_left % 500
+  arabics_to_romans.each do |arabic_to_roman|
+    arabic = arabic_to_roman.first
+    roman = arabic_to_roman.last
 
-  (num_left / 100).times { print "C" }
-  num_left = num_left % 100
+    quotient = num / arabic
+    next if quotient == 0
 
-  (num_left / 90).times { print "XC" }
-  num_left = num_left % 90
+    answer.push(roman * quotient)
+    num %= arabic
+  end
 
-  (num_left / 50).times { print "L" }
-  num_left = num_left % 50
+  answer.join
 
-  (num_left / 10).times { print "X" }
-  num_left = num_left % 10
-
-  (num_left / 9).times { print "IX" }
-  num_left = num_left % 9
-
-  (num_left / 5).times { print "V" }
-  num_left = num_left % 5
-
-  (num_left / 1).times { print "I" }
-
-  return
 end
 
 input = ARGV[0].to_i

@@ -37,27 +37,31 @@
 
 def old_school_roman_numeral(num)
 
-  (num / 1000).times { print "M" }
-  num_left = num % 1000
+  arabics_to_romans = [
+    [1000, "M"],
+    [500, "D"],
+    [100, "C"],
+    [50, "L"],
+    [10, "X"],
+    [5, "V"],
+    [1, "I"],
+  ]
 
-  (num_left / 500).times { print "D" }
-  num_left = num_left % 500
+  answer = []
 
-  (num_left / 100).times { print "C" }
-  num_left = num_left % 100
+  arabics_to_romans.each do |arabic_to_roman|
+    arabic = arabic_to_roman.first
+    roman = arabic_to_roman.last
 
-  (num_left / 50).times { print "L" }
-  num_left = num_left % 50
+    quotient = num / arabic
+    next if quotient == 0
 
-  (num_left / 10).times { print "X" }
-  num_left = num_left % 10
+    answer.push(roman * quotient)
+    num %= arabic
+  end
 
-  (num_left / 5).times { print "V" }
-  num_left = num_left % 5
+  answer.join
 
-  (num_left / 1).times { print "I" }
-
-  return
 end
 
 input = ARGV[0].to_i
