@@ -11,7 +11,20 @@
 # Hint: I've already structured your program. Aren't you lucky? :)
 
 def ask(question)
-  # your solution here
+  loop do
+    puts question
+    reply = gets.chomp.downcase
+    if (reply == "yes" || reply == "no")
+      if reply == "yes"
+       return true
+      else
+        return false
+      end
+    else
+      puts 'Please answer "yes" or "no".'
+    end
+  end
+  answer
 end
 
 puts ask('Do you like eating tacos?')

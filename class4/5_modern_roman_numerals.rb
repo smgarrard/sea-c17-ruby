@@ -23,7 +23,37 @@
 #   IX
 
 def modern_roman_numeral(num)
-  # your solution here
+
+  (num / 1000).times { print "M" }
+  num_left = num % 1000
+
+  (num_left / 900).times { print "CM" }
+  num_left = num_left % 900
+
+  (num_left / 500).times { print "D" }
+  num_left = num_left % 500
+
+  (num_left / 100).times { print "C" }
+  num_left = num_left % 100
+
+  (num_left / 90).times { print "XC" }
+  num_left = num_left % 90
+
+  (num_left / 50).times { print "L" }
+  num_left = num_left % 50
+
+  (num_left / 10).times { print "X" }
+  num_left = num_left % 10
+
+  (num_left / 9).times { print "IX" }
+  num_left = num_left % 9
+
+  (num_left / 5).times { print "V" }
+  num_left = num_left % 5
+
+  (num_left / 1).times { print "I" }
+
+  return
 end
 
 input = ARGV[0].to_i

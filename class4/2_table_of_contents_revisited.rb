@@ -13,3 +13,16 @@
 # Chapter 1:  Getting Started                page  1
 # Chapter 2:  Numbers                        page  9
 # Chapter 3:  Letters                        page 13
+
+title = "Table of Contents"
+chapter_1 = ["Chapter 1:  Getting Started", "page  1"]
+chapter_2 = ["Chapter 2:  Numbers", "page  9"]
+chapter_3 = ["Chapter 3:  Letters", "page 13"]
+
+table_of_contents = [title, chapter_1, chapter_2, chapter_3]
+
+puts table_of_contents[0].center(50)
+table_of_contents.delete_at(0)
+table_of_contents.each do |x|
+  puts x[0].ljust(30) + x[1].rjust(20)
+end

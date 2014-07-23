@@ -26,3 +26,15 @@
 #
 # Hint: There’s a lovely array method that will give you a sorted version of
 # an array called `sort`. Use it!
+
+words = []
+puts "Add words to an array:"
+
+loop do
+  your_word = gets.chomp
+  break if your_word == ""
+  words.push your_word
+end
+
+puts "Here are your words in alphabetical order:"
+puts words.sort
