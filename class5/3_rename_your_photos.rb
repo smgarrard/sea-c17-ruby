@@ -45,4 +45,34 @@
 
 require "fileutils"
 
-# your code here
+
+
+source = "source"
+# target = "target"
+
+photos = Dir["#{source}/*.{jpg}"]
+
+# puts photos
+# Dir.chdir("target")
+
+# FileUtils.copy_file(source, target)
+# Dir.chdir[../class5]
+photos.each do |name|
+  FileUtils.copy_file(name, "/target")
+  base_name = File.basename("#{name}", ".jpg")
+  newname = "#{base_name}_#{File.size(name)}.jpg"
+  File.rename(name, newname)
+end
+
+# puts "=> Copied #{photos.length} photos from source to target"
+
+# input = ARGV[0, 1]
+
+# if input[0] == nil && input[1] == nil
+#   puts "Usage: 3_rename_your_photos.rb SOURCE TARGET"
+#   exit
+# end
+# source = input[0]
+# target = input[0]
+# rename_your_photos(input)
+

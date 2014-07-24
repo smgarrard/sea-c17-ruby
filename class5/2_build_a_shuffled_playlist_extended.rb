@@ -64,3 +64,50 @@
 #           for writing.
 
 # your code here
+
+def playlist_extended(file_name)
+  puts file_name
+  songs = Dir["songs/*.{mp3,m4a}"].shuffle
+  puts "=> Build a shuffled playlist"
+  file_name = "#{file_name}.m3u" unless file_name.end_with?(".m3u")
+  def save_file(object, filename, mode)
+    File.open filename, mode do |f|
+      f.write(object.join("\n"))
+    end
+  end
+
+  if File.exist?(file_name)
+    puts "file exists!"
+    puts "=> WARNING: #{file_name} already exists"
+    print "=> (c)ancel, (o)verwrite, or (a)ppend >  "
+    action = STDIN.gets.chomp
+    if action.downcase == "c"
+      puts "=> Canceled"
+      exit
+    elsif action.downcase == "o"
+      mode = "w"
+      puts "=> Overwrote #{file_name} with #{songs.length} songs"
+    elsif action.downcase == "a"
+      mode = "a"
+      puts "=> Appended #{file_name} with #{songs.length} songs"
+    else
+        exit
+    end
+
+    save_file(songs, file_name, mode)
+  else
+    mode = "w"
+    puts "=> Created #{file_name} with #{songs.length} songs"
+    save_file(songs, file_name, mode)
+  end
+
+end
+
+input = ARGV[0]
+
+if input == nil
+  puts "Usage: 2_build_a_shuffled_playlist_extended.rb PLAYLIST"
+  exit
+end
+
+playlist_extended(input)
