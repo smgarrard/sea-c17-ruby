@@ -45,10 +45,8 @@
 
 require "fileutils"
 
-
-
 source = "source"
-# target = "target"
+target = "target"
 
 photos = Dir["#{source}/*.{jpg}"]
 
@@ -58,13 +56,13 @@ photos = Dir["#{source}/*.{jpg}"]
 # FileUtils.copy_file(source, target)
 # Dir.chdir[../class5]
 photos.each do |name|
-  FileUtils.copy_file(name, "/target")
+  # FileUtils.copy_file(name, "/target")
   base_name = File.basename("#{name}", ".jpg")
-  newname = "#{base_name}_#{File.size(name)}.jpg"
+  newname = "#{target}/#{base_name}_#{File.size(name)}.jpg"
   File.rename(name, newname)
 end
 
-# puts "=> Copied #{photos.length} photos from source to target"
+puts "=> Copied #{photos.length} photos from source to target"
 
 # input = ARGV[0, 1]
 
@@ -75,4 +73,3 @@ end
 # source = input[0]
 # target = input[0]
 # rename_your_photos(input)
-
