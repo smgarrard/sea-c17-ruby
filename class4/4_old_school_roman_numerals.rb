@@ -36,7 +36,6 @@
 #   VIIII
 
 def old_school_roman_numeral(num)
-
   arabics_to_romans = [
     [1000, "M"],
     [500, "D"],
@@ -61,7 +60,6 @@ def old_school_roman_numeral(num)
   end
 
   answer.join
-
 end
 
 input = ARGV[0].to_i
