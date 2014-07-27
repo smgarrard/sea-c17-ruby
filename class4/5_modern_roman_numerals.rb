@@ -23,7 +23,6 @@
 #   IX
 
 def modern_roman_numeral(num)
-
   arabics_to_romans = [
     [1000, "M"],
     [900, "CM"],
@@ -54,7 +53,6 @@ def modern_roman_numeral(num)
   end
 
   answer.join
-
 end
 
 input = ARGV[0].to_i
