@@ -33,7 +33,7 @@ puts "Add words to an array:"
 loop do
   your_word = gets.chomp
   break if your_word == ""
-  words.push your_word
+  words.push(your_word)
 end
 
 puts "Here are your words in alphabetical order:"
