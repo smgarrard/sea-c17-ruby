@@ -68,4 +68,14 @@ if year == 0 || month == 0 || day == 0
   exit
 end
 
-# your code here
+birthday = Time.utc(year, month, day)
+now = Time.now.utc
+years_between = now.year - birthday.year
+
+if birthday.month > now.month || birthday.month == now.month && birthday.day > now.day
+  years_between -= 1
+end
+
+years_between.times do
+  puts "CHEER!"
+end

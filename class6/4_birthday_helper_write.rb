@@ -43,7 +43,7 @@
 
 require 'yaml'
 
-name = ARGV[0]
+name = ARGV[0].capitalize
 year = ARGV[1].to_i
 month = ARGV[2].to_i
 day = ARGV[3].to_i
@@ -53,4 +53,20 @@ if name.nil? || year == 0 || month == 0 || day == 0
   exit
 end
 
-# your code here
+birth_dates      = File.read("birth_dates.yml")
+birth_dates_hash = YAML.load(birth_dates)
+birth_date_time = Time.utc(year, month, day)
+
+def yaml_save(object, filename)
+  File.open filename, 'w' do |file|
+    file.write object.to_yaml
+  end
+end
+
+if birth_dates_hash.has_key?(name)
+  birth_dates_hash[name] = birth_date_time
+  yaml_save(birth_dates_hash,'birth_dates.yml')
+else
+  birth_dates_hash[name] = birth_date_time
+  yaml_save(birth_dates_hash,'birth_dates.yml')
+end
