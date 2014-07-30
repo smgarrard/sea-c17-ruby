@@ -70,3 +70,4 @@ else
   birth_dates_hash[name] = birth_date_time
   yaml_save(birth_dates_hash,'birth_dates.yml')
 end
+puts "Birthday #{birth_dates_hash[name]} saved for #{name}"
