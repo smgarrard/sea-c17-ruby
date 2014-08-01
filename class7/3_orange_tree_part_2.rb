@@ -49,6 +49,7 @@ class OrangeTree
       @fruit = @fruit - amount
     end
   end
+
 end
 
 orange_tree = OrangeTree.new

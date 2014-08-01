@@ -56,6 +56,7 @@
 #     1.plus_forty_two  #=> 43
 
 class Integer
+
   def hours_in_seconds
     self * (60*60)
   end
@@ -65,11 +66,7 @@ puts 10.hours_in_seconds == 36000
 
 class String
   def indent(amount = 2)
-    if amount.nil?
-      "  #{self}"
-    elsif amount >= 0
-      (" " * amount) + self
-    end
+    (" " * amount) + self
   end
 end
 
@@ -127,6 +124,7 @@ class Array
   def fourth
     self[3]
   end
+
 end
 
 puts [10, 20, 30, 40].second == 20

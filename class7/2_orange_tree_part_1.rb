@@ -33,5 +33,4 @@ class OrangeTree
 end
 
 orange_tree = OrangeTree.new
-
 puts orange_tree.fruit == 50
