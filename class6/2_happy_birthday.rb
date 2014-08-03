@@ -64,8 +64,7 @@ month = ARGV[1].to_i
 day = ARGV[2].to_i
 
 if year == 0 || month == 0 || day == 0
-  puts "Usage: 2_happy_birthday.rb YEAR MONTH DAY"
-  exit
+  abort "Usage: 2_happy_birthday.rb YEAR MONTH DAY"
 end
 
 birthday = Time.utc(year, month, day)
@@ -75,7 +74,7 @@ years_between = now.year - birthday.year
 if birthday.month > now.month || birthday.month == now.month && birthday.day > now.day
   years_between -= 1
 end
+
 puts "The birth date is #{birthday}"
-years_between.times do
-  puts "CHEER!"
-end
+
+years_between.times { puts "CHEER!" }

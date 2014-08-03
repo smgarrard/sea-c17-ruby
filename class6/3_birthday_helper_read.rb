@@ -48,38 +48,21 @@ require 'yaml'
 
 name = ARGV.first
 
-if name.nil?
-  puts "Usage: 3_birthday_helper_read.rb NAME"
-  exit
-end
+abort "Usage: 3_birthday_helper_read.rb NAME" unless name
 
-birth_dates      = File.read("birth_dates.yml")
-birth_dates_hash = YAML.load(birth_dates)
+birth_dates = YAML.load(File.read('birth_dates.yml'))
 
-unless birth_dates_hash.has_key?(name.capitalize)
-    abort "Unknown birth date for #{name.capitalize}"
-end
+name = name.capitalize
+bd = birth_dates[name]
 
-birth_dates_hash.each do |first_name, birth_date|
-  if name.capitalize == first_name
-    birth_day_string = birth_date.utc.strftime("%F")
-    now_string = Time.new.utc.strftime("%F")
-    current_year       = now_string[0..3].to_i
-    current_month      = now_string[5..6].to_i
-    current_day        = now_string[-2..-1].to_i
-    birth_year         = birth_day_string[0..3].to_i
-    birth_month        = birth_day_string[5..6].to_i
-    birth_day          = birth_day_string[-2..-1].to_i
-    next_birthday_year = current_year
+abort "Unknown birth date for '#{name}'" unless bd
 
-    if birth_month < current_month
-      next_birthday_year = current_year + 1
-    elsif birth_month == current_month && birth_day <= current_day
-      next_birthday_year = current_year + 1
-    end
+now = Time.new.utc
+year = now.year
 
-    next_birthday = "#{next_birthday_year}-#{birth_month}-#{birth_day}"
-    puts "#{name.capitalize} will be #{next_birthday_year - birth_year} on #{next_birthday}."
-    exit
-  end
-end
+year += 1 if now.month > bd.month || (now.month == bd.month && now.day > bd.day)
+
+age = year - bd.year
+nbd = Time.utc(year, bd.month, bd.day)
+
+puts "#{name} will be #{age} on #{nbd.strftime("%F")}"
