@@ -18,4 +18,38 @@
 
 # your code here
 
+
+# def each_without_yolo(&block)
+#    block.call
+
+# end
+
+# ["OMG", "YOLO", "ROTFL", "yolo", "FTW"].each_without_yolo { |e| puts e }
+
+class Array
+  def each_without_yolo(&block)
+    self.each do |word|
+      if word.upcase == "YOLO"
+        word = "Life is too short"
+        puts word
+      end
+    end
+  end
+end
+
 ["OMG", "YOLO", "ROTFL", "yolo", "FTW"].each_without_yolo { |e| puts e }
+
+
+# class Array
+#   def each_without_yolo(&block)
+#     self.each do |word|
+#       if word.upcase == "YOLO"
+#         puts "Life is too short"
+#       else
+#         puts word
+#       end
+#     end
+#   end
+# end
+
+# ["OMG", "YOLO", "ROTFL", "yolo", "FTW"].each_without_yolo { |e| puts e }
