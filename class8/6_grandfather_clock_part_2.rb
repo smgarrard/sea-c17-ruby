@@ -22,7 +22,10 @@
 def grandfather_clock(str, &block)
   current_hour = Time.new.hour
   current_hour -= 12 if current_hour > 12
+  current_hour = 12 if current_hour == 0
+
   puts "The hour is #{current_hour}"
+
   current_hour.times { block.call(str) }
 end
 

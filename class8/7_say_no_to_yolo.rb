@@ -18,10 +18,9 @@
 
 class Array
   def each_without_yolo(&block)
-    block.call
-    self.each do |word|
-      word = "Life is too short" if word.upcase == "YOLO"
-      puts word
+    each do |element|
+      element = "Life is too short" if element.upcase == "YOLO"
+      block.call(element)
     end
   end
 end
