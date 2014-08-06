@@ -52,10 +52,8 @@
 #     Daylight Savings begins at 2:00am on the second Sunday in March and
 #     reverts to standard time on the first Sunday in November.
 
-#Time.new(year, month, day, hour, min, sec, utc_offset)
-
-my_birthday = Time.new(1988, 5, 11).utc
-one_billion_second_birthday = my_birthday + 1000000000
+my_birthday = Time.new(1988, 5, 11, 0, 0, 0, "-07:00")
+one_billion_second_birthday = my_birthday + 1_000_000_000
 
 puts "I was born on #{my_birthday}"
 puts "And I turn one billion seconds old on #{one_billion_second_birthday}"

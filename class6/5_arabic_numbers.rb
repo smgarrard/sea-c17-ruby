@@ -87,56 +87,50 @@
 #     "".empty?   #=> true
 #     "a".empty?  #=> false
 
+def arabic_number(num)
+  roman_to_arabic = {
+    "M"  => 1000,
+    "CM" => 900,
+    "D"  => 500,
+    "CD" => 400,
+    "C"  => 100,
+    "XC" => 90,
+    "L"  => 50,
+    "XL" => 40,
+    "X"  => 10,
+    "IX" => 9,
+    "V"  => 5,
+    "IV" => 4,
+    "I"  => 1
+  }
+
+  original = num
+  num = num.upcase
+  result = 0
+
+  roman_to_arabic.each do |roman, arabic|
+    prefix = num.cut(roman)
+    next if prefix.empty?
+
+    result += arabic * prefix.size / roman.size
+
+    num = num[prefix.size..-1]
+    break if num.empty?
+  end
+
+  abort "Invalid roman numeral '#{original}'" unless num.empty?
+
+  result
+end
+
 class String
   def cut(str)
     slice(/^(#{str})*/)
   end
 end
 
-def arabic_number(num)
+input = ARGV.first
 
-  romans_to_arabics = {
-    "M" => 1000,
-    "CM" => 900,
-    "D" => 500,
-    "CD" => 400,
-    "C" => 100,
-    "XC" => 90,
-    "L" => 50,
-    "XL" => 40,
-    "X" => 10,
-    "IX" => 9,
-    "V" => 5,
-    "IV" => 4,
-    "I" =>1
-  }
-  input = num
-  answer = 0
-
-  romans_to_arabics.each_with_index do |(roman, arabic), index|
-    if num.start_with?(roman)
-      while num.start_with?(roman)
-        answer += arabic
-        counter = 1
-        num = num[(roman.length * counter)..-1]
-        counter += 1
-      end
-      num.cut(roman)
-    elsif num.empty?
-      puts answer
-      exit
-    elsif index == romans_to_arabics.count
-     abort "Invalid roman numeral #{input}"
-    end
-  end
-  puts answer
-end
-
-input = ARGV.first.upcase unless ARGV.first.nil?
-
-if input.nil?
-  puts "Usage: 5_arabic_numbers.rb ROMAN_NUMERAL"
-  exit
-end
+abort "Usage: 4_arabic_numbers.rb ROMAN_NUMERAL" unless input
 
 puts arabic_number(input)

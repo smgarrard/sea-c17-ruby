@@ -41,33 +41,24 @@
 #     YAML.dump("foo")                #=> "--- foo\n...\n"
 #     YAML.dump({ "foo" => "bar" })   #=> "---\nfoo: bar\n"
 
-require 'yaml'
+require "yaml"
 
-name = ARGV[0].capitalize
+name = ARGV[0]
 year = ARGV[1].to_i
 month = ARGV[2].to_i
 day = ARGV[3].to_i
 
 if name.nil? || year == 0 || month == 0 || day == 0
-  puts "Usage: 4_birthday_helper_write.rb NAME YEAR MONTH DAY"
-  exit
+  abort "Usage: 4_birthday_helper_write.rb NAME YEAR MONTH DAY"
 end
 
-birth_dates      = File.read("birth_dates.yml")
-birth_dates_hash = YAML.load(birth_dates)
-birth_date_time = Time.utc(year, month, day)
+name = name.capitalize
 
-def yaml_save(object, filename)
-  File.open filename, 'w' do |file|
-    file.write object.to_yaml
-  end
+birth_dates = YAML.load(File.read("birth_dates.yml"))
+birth_dates[name] = Time.utc(year, month, day)
+
+File.open("birth_dates.yml", "w") do |file|
+  file.write birth_dates.to_yaml
 end
 
-if birth_dates_hash.has_key?(name)
-  birth_dates_hash[name] = birth_date_time
-  yaml_save(birth_dates_hash,'birth_dates.yml')
-else
-  birth_dates_hash[name] = birth_date_time
-  yaml_save(birth_dates_hash,'birth_dates.yml')
-end
-puts "Birthday #{birth_dates_hash[name]} saved for #{name}"
+puts "Birthday #{birth_dates[name]} saved for #{name}"
