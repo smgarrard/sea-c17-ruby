@@ -58,7 +58,7 @@
 class Integer
 
   def hours_in_seconds
-    self * (60*60)
+    self * 60 * 60
   end
 end
 
@@ -66,7 +66,7 @@ puts 10.hours_in_seconds == 36000
 
 class String
   def indent(amount = 2)
-    (" " * amount) + self
+    " " * amount + self
   end
 end
 
@@ -93,6 +93,7 @@ class Integer
 
     answer = []
     num = self
+
     arabics_to_romans.each do |arabic_to_roman|
       arabic = arabic_to_roman.first
       roman = arabic_to_roman.last
@@ -105,7 +106,6 @@ class Integer
     end
 
     answer.join
-
   end
 end
 
@@ -124,7 +124,6 @@ class Array
   def fourth
     self[3]
   end
-
 end
 
 puts [10, 20, 30, 40].second == 20
